@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Car
+{% endblock %}
+
+{% block body %}
+    <div class="col-md-12 offset-md-0 ">
+        <ul class="list-group">
+            <table class="table table-striped">
+
+                    <thead>
+
+                        <tr>
+                            <td>Id</td>
+                            <td>Motorisation</td>
+                            <td>Fuel</td>
+                            <td>Type</td>
+                            <td>Color</td>
+                            <td>Transmission</td>
+                            <td>Driven</td>
+                            <td colspan="2">Actions</td>
+                        </tr>
+                    </thead>
+                {% for car in cars %}
+                    <tbody>
+                        <tr>
+                                <td colspan="9">Marque</td>
+
+                        </tr>
+                        <tr>
+                            <th>
+                                <a href="{{ path('car_show', {'carId' : car.id}) }}">
+                                    {{ car.id }}
+                                </a>
+                            </th>
+                            <th>{{ car.motorisation }}</th>
+                            <th>{{ car.fuel }}</th>
+                            <th>{{ car.type }}</th>
+                            <th>{{ car.color }}</th>
+                            <th>{{ car.transmission }}</th>
+                            <th>{{ car.driven }}</th>
+                            <th><i class="fa fa-edit"></i></th>
+                            <th>
+                                <a href="{{ path('car_delete', {'carId': car.id}) }}">
+                                    <button class="btn btn-outline-danger" type="button">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </a>
+                            </th>
+                        </tr>
+
+                        {% endfor %}
+                        <tr>
+                            <th colspan="9">Ajouter une nouvelle voiture</th>
+                        </tr>
+                        <form action="{{ path('car_create') }}" method="post">
+                        <tr>
+                            <th>
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Choisir la marque" class="form-control input-block-level" name="id_brand" />
+                                    </div>
+                            </th>
+                            <th>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Choisir la motorisation" class="form-control input-block-level" name="motorisation" />
+                                </div>
+                            </th>
+                            <th>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Choisir le carburant" class="form-control input-block-level" name="fuel" />
+                                </div>
+                            </th>
+                            <th>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Choisir le type" class="form-control input-block-level" name="type" />
+                                </div>
+                            </th>
+                            <th>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Choisir la couleur" class="form-control input-block-level" name="color" />
+                                </div>
+                            </th>
+                            <th>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Choisir la transmission" class="form-control input-block-level" name="transmission" />
+                                </div>
+                            </th>
+                            <th>
+                                <div class="input-group">
+                                    <input type="text" placeholder="Choisir l'année" class="form-control input-block-level" name="driven" />
+                                </div>
+                            </th>
+                            <th colspan="2">
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="submit">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        </form>
+                    </tbody>
+
+            </table>
+
+        </ul>
+    </div>
+{% endblock %}
